@@ -1,10 +1,18 @@
 const inquirer = require('inquirer');
+const db = require('./db/connection');
+
+
+db.connect(err => {
+    if (err) throw err;
+    console.log('Database connected.');
+    startApp();
+});
 
 const startApp = () => {
     inquirer.prompt([
         {
             type: 'list',
-            name: 'choices',
+            name: 'options',
             message: 'What would you like to do?',
             choices: ['View all Departments', 'View all Roles', 'View all Employees',
                 'Add a Department', 'Add a Role', 'Add an Employee',
@@ -12,6 +20,25 @@ const startApp = () => {
             ]
         }
     ])
-};
+    .then(response => {
+        switch (response.options) {
+            // case 'View all Departments':
 
-startApp();
+            //     break;
+            // case 'View all Roles':
+            //     break;
+            // case 'View all Employees':
+            //     break;
+            // case 'Add a Department':
+            //     break;
+            // case 'Add a Role':
+            //     break;
+            // case 'Add an Employee':
+            //     break;
+            // case 'Update an Employee Role':
+            //     break;
+            case 'Exit':
+                break;
+        }
+    })
+};
