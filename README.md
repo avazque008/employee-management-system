@@ -54,7 +54,6 @@ A command-line application that dynamically updates tables in a databases throug
 
 ## Tests
 
-Notice - May Require to Download!
 [Walkthrough Video](https://drive.google.com/file/d/12kxSv95YYqLjUxxUqmlWdekRhhl5g2u6/view)
 
 
