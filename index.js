@@ -1,14 +1,10 @@
 const inquirer = require('inquirer');
-const db = require('./db/connection');
+const Departments = require('./lib/Departments');
+const Roles = require('./lib/Roles');
+const Employees = require('./lib/Employees');
 
+function startApp () {
 
-db.connect(err => {
-    if (err) throw err;
-    console.log('Database connected.');
-    startApp();
-});
-
-const startApp = () => {
     inquirer.prompt([
         {
             type: 'list',
@@ -19,26 +15,33 @@ const startApp = () => {
                 'Update an Employee Role', new inquirer.Separator(), 'Exit', new inquirer.Separator()
             ]
         }
-    ])
-    .then(response => {
-        switch (response.options) {
-            // case 'View all Departments':
-
-            //     break;
-            // case 'View all Roles':
-            //     break;
-            // case 'View all Employees':
-            //     break;
-            // case 'Add a Department':
-            //     break;
-            // case 'Add a Role':
-            //     break;
-            // case 'Add an Employee':
-            //     break;
-            // case 'Update an Employee Role':
-            //     break;
+    ])    
+    .then(choice => {
+        switch (choice.options) {
+            case 'View all Departments':
+                Departments.getTable(startApp);
+                break;
+            case 'View all Roles':
+                Roles.getTable(startApp);
+                break;
+            case 'View all Employees':
+                Employees.getTable(startApp);
+                break;
+            case 'Add a Department':
+                Departments.addToTable(startApp);
+                break;
+            case 'Add a Role':
+                Roles.addToTable(startApp);
+                break;
+            case 'Add an Employee':
+                Employees.addToTable(startApp);
+                break;
+            case 'Update an Employee Role':
+                break;
             case 'Exit':
                 break;
         }
-    })
+    });
 };
+
+startApp();
