@@ -37,6 +37,7 @@ function startApp () {
                 Employees.addToTable(startApp);
                 break;
             case 'Update an Employee Role':
+                Employees.updateTable(startApp);
                 break;
             case 'Exit':
                 break;
